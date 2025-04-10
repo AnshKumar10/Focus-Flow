@@ -2,14 +2,22 @@
 
 ## 🧠 What was the hardest part to build? How did you approach it?
 
-The hardest part was getting the **timer and task tracking to work well together**. I had to make sure the app knew whether it was a work or break session, which task was active, and what to do when the timer hit zero.
+The hardest part was getting the **timer and task management to work together smoothly**. I had to make sure the timer switched correctly between work and break sessions, and also kept track of which task was active and how many Pomodoro sessions it had completed.
 
-To handle this, I:
-- Used one `useEffect` to manage the countdown timer
-- Created a clear `toggleTimer` function to pause and start the timer
-- Used another `useEffect` to react when time ran out and switch sessions
+There were a few tricky situations, like:
+- How to pick the next task automatically?
+- Making sure the timer doesn’t start when there are no tasks or all tasks are done.
 
-Breaking the logic into small pieces helped avoid bugs and made the code easier to understand.
+### How I solved it:
+- Used `useEffect` with a `setInterval` to handle the countdown logic.
+- On timer end, it switches between work and break sessions.
+- Created a function to update task progress and mark it as completed.
+- If the current task is completed, it automatically picks the next incomplete task.
+- Added checks to prevent starting the timer when no tasks are available.
+- Implemented a basic focus tracker that reduces score on pause events.
+
+By breaking down the logic step-by-step and testing edge cases, I kept everything in sync and avoided bugs.
+
 
 ---
 
